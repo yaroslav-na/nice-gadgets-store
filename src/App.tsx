@@ -1,21 +1,14 @@
-import React from 'react';
-import './App.scss';
+import React, { FC } from 'react';
+import { Provider } from 'react-redux';
 
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
+import { store } from './app/store';
+import { AppRoutes } from './routes';
+import './styles/index.scss';
 
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
-
-export const App: React.FC = () => {
+export const App: FC = () => {
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
-    </div>
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   );
 };
